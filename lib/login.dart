@@ -3,6 +3,8 @@ import 'package:e_commerce/homepage.dart';
 import 'package:e_commerce/signup.dart';
 import 'package:flutter/material.dart';
 
+import 'Navigations.dart';
+
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
@@ -110,7 +112,7 @@ class LoginPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () { Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return const HomePage();
+                          return const Navigation();
                         }));},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF40BFFF),

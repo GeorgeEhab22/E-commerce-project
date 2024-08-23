@@ -5,8 +5,119 @@ class MyAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const Scaffold(
-       body: Center(child: Text("Account",style: TextStyle(fontSize: 60,color: Colors.yellow),)),
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.5,
+        centerTitle: true,
+        title: Text(
+          "Profile",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: width * 0.08, // Responsive font size
+          ),
+        ),
+      ),
+      body: ListView(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: height * 0.05, // Responsive height
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(width * 0.03), // Responsive padding
+                    child: CircleAvatar(
+                      radius: width * 0.15, // Responsive radius
+                      backgroundImage: const AssetImage("assets/images/Messi.jpg"),
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Lionel Messi",
+                        style: TextStyle(
+                          fontSize: width * 0.06, // Responsive font size
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                        "Leo@gmail.com",
+                        style: TextStyle(
+                          fontSize: width * 0.04, // Responsive font size
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: height * 0.1, // Responsive height
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.03), // Responsive padding
+                child: ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.settings, color: Colors.blue, size: width * 0.07),
+                  label: Text(
+                    "Settings",
+                    style: TextStyle(fontSize: width * 0.06, color: Colors.blue),
+                  ),
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0.2),
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: height * 0.07, // Responsive height
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.03), // Responsive padding
+                child: ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.language, color: Colors.blue, size: width * 0.07),
+                  label: Text(
+                    "Languages",
+                    style: TextStyle(fontSize: width * 0.06, color: Colors.blue),
+                  ),
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0.2),
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: height * 0.07, // Responsive height
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.03), // Responsive padding
+                child: ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.dark_mode, color: Colors.blue, size: width * 0.07),
+                  label: Text(
+                    "Mode",
+                    style: TextStyle(fontSize: width * 0.06, color: Colors.blue),
+                  ),
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0.2),
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

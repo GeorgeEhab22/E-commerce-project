@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
-
-import 'Favorites.dart';
-import 'HomePage.dart';
+import 'favorites.dart';
+import 'homepage.dart';
 import 'myAccount.dart';
 
 class Navigation extends StatefulWidget {
@@ -14,8 +12,9 @@ class Navigation extends StatefulWidget {
 
 class _MyWidgetState extends State<Navigation> {
   @override
-   List screens=[HomePage(),favoriteProducts(),MyAccount()];  
+   List screens=[const HomePage(),const FavoriteProducts(),const MyAccount()];  
       int bottomNavigationBarIndex = 0;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
  body: screens[bottomNavigationBarIndex],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'cubits/getProducts_cubit.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,6 +15,8 @@ class _HomePageState extends State<HomePage> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
+    bool isTabletOrDesktop = width > 600;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         title: Center(
           child: SizedBox(
-            width: width * 0.75,
+            width: isTabletOrDesktop ? width * 0.5 : width * 0.75,
             height: height * 0.05,
             child: TextField(
               autofocus: false,
@@ -48,177 +49,109 @@ class _HomePageState extends State<HomePage> {
               child: CircularProgressIndicator(),
             );
           } else if (state is GetProductsSuccess) {
-            return ListView.builder(
-              itemCount: (state.productsList.length / 2).ceil(),
-              itemBuilder: (context, index) {
-                final firstProduct = state.productsList[index * 2];
-                final secondProduct = index * 2 + 1 < state.productsList.length
-                    ? state.productsList[index * 2 + 1]
-                    : null;
-
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (index == 0) ...[
-                      SizedBox(height: height * 0.02),
-                      Stack(
+            return Padding(
+              padding: EdgeInsets.all(width * 0.03),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: isTabletOrDesktop ? 4 : 2,
+                  crossAxisSpacing: width * 0.03,
+                  mainAxisSpacing: height * 0.03,
+                  childAspectRatio: isTabletOrDesktop ? 0.6 : 0.55, // Adjusted for taller cards
+                ),
+                itemCount: state.productsList.length,
+                itemBuilder: (context, index) {
+                  final product = state.productsList[index];
+                  return Card(
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(isTabletOrDesktop ? 12.0 : 10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.all(width * 0.02),
-                            child: Image.asset(
-                              'assets/images/image 51.png',
-                              width: width,
-                              height: height *
-                                  0.25, // Adjust the height for responsiveness
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          Positioned(
-                            left: width * 0.05,
-                            top: height * 0.04,
-                            child: Container(
-                              width: width * 0.7,
-                              child: const Text(
-                                'Recommended Product',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 32.0,
-                                ),
+                          AspectRatio(
+                            aspectRatio: 1.0, // Keeps the image ratio consistent
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: Image.network(
+                                product.thumbnail,
+                                fit: BoxFit.cover, // Ensures the image covers the area without distortion
+                                width: double.infinity,
                               ),
                             ),
                           ),
-                          Positioned(
-                            left: width * 0.05,
-                            bottom: height * 0.05,
-                            child: Container(
-                              width: width * 0.6,
-                              child: const Text(
-                                'We recommend the best for you',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 16.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: height * 0.02),
-                    ],
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.03),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
+                          const SizedBox(height: 10),
                           Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(right: width * 0.02),
-                              child: Card(
-                                elevation: 5,
-                                child: Column(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  product.title,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: isTabletOrDesktop ? 16 : 14,
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const SizedBox(height: 5),
+                                Row(
                                   children: [
-                                    const SizedBox(height: 10),
-                                    Image.network(
-                                      firstProduct.thumbnail,
-                                      width: 90,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.all(15),
-                                      child: SizedBox(
-                                        width: 100,
-                                        child: Text(
-                                          firstProduct.title,
-                                          style: const TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
+                                    Icon(Icons.star, color: Colors.yellow[700], size: isTabletOrDesktop ? 18 : 16),
+                                    const SizedBox(width: 5),
+                                    Text(
+                                      product.rating.toString(),
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: isTabletOrDesktop ? 16 : 14,
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: 100,
-                                      child: Text(
-                                        "rating : ${firstProduct.rating}",
-                                        style: const TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    SizedBox(
-                                      width: 100,
-                                      child: Text(
-                                        "price : ${firstProduct.price.toString()}",
-                                        style: const TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 10),
                                   ],
                                 ),
-                              ),
-                            ),
-                          ),
-                          if (secondProduct != null)
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.only(left: width * 0.02),
-                                child: Card(
-                                  elevation: 5,
-                                  child: Column(
-                                    children: [
-                                      const SizedBox(height: 10),
-                                      Image.network(
-                                        secondProduct.thumbnail,
-                                        width: 90,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(15),
-                                        child: SizedBox(
-                                          width: 100,
-                                          child: Text(
-                                            secondProduct.title,
-                                            style: const TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 100,
-                                        child: Text(
-                                          "rating : ${secondProduct.rating}",
-                                          style: const TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 5),
-                                      SizedBox(
-                                        width: 100,
-                                        child: Text(
-                                          "price : ${secondProduct.price.toString()}",
-                                          style: const TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                    ],
+                                const SizedBox(height: 5),
+                                Text(
+                                  "\$${product.price.toString()}",
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: isTabletOrDesktop ? 18 : 16,
                                   ),
                                 ),
-                              ),
+                                const SizedBox(height: 5),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "\$534.33", // Original price (static for example purposes)
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        decoration: TextDecoration.lineThrough,
+                                        fontSize: isTabletOrDesktop ? 14 : 12,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 5),
+                                    Text(
+                                      "24% Off", // Discount (static for example purposes)
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: isTabletOrDesktop ? 16 : 14,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
+                          ),
                         ],
                       ),
                     ),
-                  ],
-                );
-              },
+                  );
+                },
+              ),
             );
           } else if (state is GetProductsFailure) {
             return Center(

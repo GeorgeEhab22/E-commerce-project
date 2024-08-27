@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MyAccount extends StatelessWidget {
@@ -7,6 +8,9 @@ class MyAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+      User? user = FirebaseAuth.instance.currentUser;
+    String displayName = user?.displayName ?? 'No Name';
+    String email = user?.email ?? 'No Email';
 
     return Scaffold(
       appBar: AppBar(
@@ -43,14 +47,14 @@ class MyAccount extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Lionel Messi",
-                        style: TextStyle(
+                          displayName,                       
+                         style: TextStyle(
                           fontSize: width * 0.06, // Responsive font size
                           color: Colors.black,
                         ),
                       ),
                       Text(
-                        "Leo@gmail.com",
+                        email,
                         style: TextStyle(
                           fontSize: width * 0.04, // Responsive font size
                           color: Colors.grey,

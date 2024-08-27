@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1038218409609",
+    "project_id": "e-commercefire-e7220",
+    "storage_bucket": "e-commercefire-e7220.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038218409609:android:67c64364255ed227b6f858",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS-e3eGU09IgWtYIFfBDTy81pEOY5jZZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

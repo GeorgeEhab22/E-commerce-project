@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:device_preview/device_preview.dart';
 import 'package:e_commerce/constants.dart';
 import 'package:e_commerce/cubits/delete_product_cubit/delete_product_cubit.dart';
@@ -13,6 +14,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
+=======
+import 'package:e_commerce/cubits/getProducts_cubit.dart';
+import 'package:e_commerce/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+
+import 'cubits/login_cubit.dart';
+>>>>>>> e763aa1457bfd7182f6d678d543f79ef13ce4d16
 import 'cubits/signup_cubit.dart';
 import 'firebase_options.dart';
 
@@ -21,6 +32,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+<<<<<<< HEAD
   await Hive.initFlutter();
   Hive.registerAdapter(ProductModelAdapter());
   await Hive.openBox<ProductModel>(kProductsBox);
@@ -36,6 +48,16 @@ void main() async {
 
 class ECommerceApp extends StatelessWidget {
   const ECommerceApp({super.key});
+=======
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  MyApp({super.key});
+  ThemeData myTheme = ThemeData(
+    primaryColor: const Color(0xff40BFFF),
+  );
+>>>>>>> e763aa1457bfd7182f6d678d543f79ef13ce4d16
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +69,7 @@ class ECommerceApp extends StatelessWidget {
         BlocProvider(
           create: (context) => LoginCubit(),
         ),
+<<<<<<< HEAD
         BlocProvider(
           create: (context) => GetProductsCubit()..getProducts(),
         ),
@@ -66,6 +89,17 @@ class ECommerceApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: const SplashScreen(),
       ),
+=======
+         BlocProvider(
+        create: (context) => GetProductsCubit()..getProducts(),
+         )
+      ],
+        child: MaterialApp(
+          theme: myTheme,
+          debugShowCheckedModeBanner: false,
+          home: const SplashScreen(),
+        ),
+>>>>>>> e763aa1457bfd7182f6d678d543f79ef13ce4d16
     );
   }
 }

@@ -1,13 +1,23 @@
 {
   "project_info": {
+<<<<<<< HEAD
     "project_number": "854785838969",
     "project_id": "e-commercefirebase-b09fe",
     "storage_bucket": "e-commercefirebase-b09fe.appspot.com"
+=======
+    "project_number": "1038218409609",
+    "project_id": "e-commercefire-e7220",
+    "storage_bucket": "e-commercefire-e7220.appspot.com"
+>>>>>>> e763aa1457bfd7182f6d678d543f79ef13ce4d16
   },
   "client": [
     {
       "client_info": {
+<<<<<<< HEAD
         "mobilesdk_app_id": "1:854785838969:android:331edf367a36c23d0929a8",
+=======
+        "mobilesdk_app_id": "1:1038218409609:android:67c64364255ed227b6f858",
+>>>>>>> e763aa1457bfd7182f6d678d543f79ef13ce4d16
         "android_client_info": {
           "package_name": "com.example.e_commerce"
         }
@@ -15,7 +25,11 @@
       "oauth_client": [],
       "api_key": [
         {
+<<<<<<< HEAD
           "current_key": "AIzaSyDUsEkoF3ycJTfQ1jgo8GvnFeo9x4Ppfio"
+=======
+          "current_key": "AIzaSyDS-e3eGU09IgWtYIFfBDTy81pEOY5jZZg"
+>>>>>>> e763aa1457bfd7182f6d678d543f79ef13ce4d16
         }
       ],
       "services": {

@@ -14,7 +14,14 @@ final class GetProductsFailure extends GetProductsState {
 }
 
 final class GetProductsSuccess extends GetProductsState {
+<<<<<<< HEAD
   final List<ProductModel> productsList;
 
   GetProductsSuccess({required this.productsList});
 }
+=======
+  final List<Products> productsList;
+
+  GetProductsSuccess({required this.productsList});
+}
+>>>>>>> e763aa1457bfd7182f6d678d543f79ef13ce4d16

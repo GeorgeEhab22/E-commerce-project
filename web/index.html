@@ -31,8 +31,35 @@
 
   <title>e_commerce</title>
   <link rel="manifest" href="manifest.json">
+<<<<<<< HEAD
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
+=======
+
+  <script>
+    // The value below is injected by flutter build, do not touch.
+    var serviceWorkerVersion = null;
+  </script>
+  <!-- This script adds the flutter initialization JS code -->
+  <script src="flutter.js" defer></script>
+</head>
+<body>
+  <script>
+    window.addEventListener('load', function(ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
+>>>>>>> e763aa1457bfd7182f6d678d543f79ef13ce4d16
 </body>
 </html>

@@ -105,7 +105,6 @@ class _LogInMiddleSectionState extends State<LogInMiddleSection> {
               } else {
                 autovalidateMode = AutovalidateMode.always;
               }
-              setState(() {});
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF40BFFF),

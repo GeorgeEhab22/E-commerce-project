@@ -7,6 +7,7 @@ import 'package:e_commerce/cubits/getProducts_cubit.dart';
 import 'package:e_commerce/cubits/login_cubit/login_cubit.dart';
 import 'package:e_commerce/helpers/simple_bloc_observer.dart';
 import 'package:e_commerce/models/products_model.dart';
+import 'package:e_commerce/screens/splash_screen.dart';
 import 'package:e_commerce/widgets/user_streaming.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,7 @@ class ECommerceApp extends StatelessWidget {
           primaryColor: const Color(0xff40BFFF),
         ),
         debugShowCheckedModeBanner: false,
-        home: const UserStreaming(),
+        home: const SplashScreen(),
       ),
     );
   }

@@ -28,12 +28,24 @@ class _LoginPageState extends State<LoginPage> {
           );
         } else if (state is LoginLoading) {
           flag = true;
-          setState(() {});
+          //  setState(() {});
+        }
+        else if(state is LoginFailure){
+          flag=false;
+          final snackBarMessage = state.errorMsg.isNotEmpty
+                    ? state.errorMsg
+                    : 'An unknown error occurred. Please try again.';
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(snackBarMessage),
+                  backgroundColor: Colors.red,),
+                );
+
         }
       },
       child: ModalProgressHUD(
         progressIndicator: const CircularProgressIndicator(
           color: primaryColor,
+          
         ),
         blur: 4,
         color: Colors.white,

@@ -112,7 +112,7 @@ class _LogInBodyState extends State<LogInBody> with SingleTickerProviderStateMix
               width: double.infinity,
               child: OutlinedButton.icon(
                 onPressed: () {
-                           context.read<LoginCubit>().signInWithGoogle();
+                          //  context.read<LoginCubit>().signInWithGoogle();
                 },
                 icon: Image.asset(
                   'assets/Logo/google_icon.png',
